@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChurchVision Studio · Hope Endtime</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,500;1,400&family=Playfair+Display:wght@500;700&family=Montserrat:wght@500;700&family=Poppins:wght@500;700&family=Lora:wght@500;700&family=Oswald:wght@500;700&family=Bebas+Neue&family=Merriweather:wght@400;700&family=Roboto+Slab:wght@500;700&family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@500;700&family=Raleway:wght@500;700&family=Dancing+Script:wght@500;700&family=Pacifico&family=Lobster&family=Great+Vibes&family=Caveat:wght@500;700&family=Anton&family=Archivo+Black&family=Abril+Fatface&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d121d;--p:#161d2d;--p2:#1f283e;--ln:#2b3652;--ink:#e8eefb;--mut:#8b9bbb;--blue:#2f7df6;--grn:#2fbf8a;--red:#e5484d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="light"]{--bg:#e9eef7;--p:#fff;--p2:#f1f5fb;--ln:#cfd8ea;--ink:#12203a;--mut:#5a6987}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:13px/1.4 "Instrument Sans",system-ui,sans-serif;display:flex;flex-direction:column}
+header{display:flex;gap:8px;align-items:center;padding:6px 12px;background:linear-gradient(90deg,#1a4fb0,#1d7a63);color:#fff;flex-wrap:wrap}
+header b{font:500 20px "Newsreader",Georgia,serif}header small{opacity:.8;margin-left:8px}
+header button{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25);color:#fff}
+.sp{flex:1}
+button,input,textarea,select,.btn{font:inherit;color:inherit}
+button,.btn{background:var(--p2);border:1px solid var(--ln);border-radius:6px;padding:5px 10px;cursor:pointer;display:inline-block}
+button:hover,.btn:hover{border-color:var(--blue)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[data-p]:focus-visible{outline:2px solid var(--grn);outline-offset:1px}
+.pri{background:var(--blue);border-color:var(--blue);color:#fff}.go{background:var(--grn);border-color:var(--grn);color:#06231a;font-weight:600}
+.dng{color:var(--red)}button.on{background:var(--red);border-color:var(--red);color:#fff}
+input,textarea,select{background:var(--bg);border:1px solid var(--ln);border-radius:6px;padding:6px 8px;width:100%}
+input[type=checkbox]{width:auto}textarea{resize:vertical;min-height:80px}
+#ws{flex:1;min-height:0;display:grid;grid-template-columns:250px minmax(0,1fr) 340px;grid-template-rows:minmax(0,1fr) 320px;grid-template-areas:"sch slp lvp" "sch dock dock";gap:6px;padding:6px}
+@media(max-width:900px){#ws{display:block;overflow:auto}.pn{margin-bottom:6px;max-height:none}}
+.pn{background:var(--p);border:1px solid var(--ln);border-radius:8px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.pn>h2{margin:0;padding:7px 10px;font-size:12px;font-weight:600;background:var(--p2);color:var(--mut);display:flex;align-items:center;gap:6px}
+.pb{flex:1;overflow:auto;padding:6px}
+#sch{grid-area:sch}#slp{grid-area:slp}#lvp{grid-area:lvp;overflow:auto}#dock{grid-area:dock}
+.row{display:flex;gap:8px;align-items:center;padding:6px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.row:hover{background:var(--p2)}.row.sel,.tile.sel{border-color:var(--blue);background:var(--p2)}
+.row .rt{font-weight:500}.mut{color:var(--mut);font-size:12px}
+.badge{font-size:10px;background:var(--blue);color:#fff;border-radius:4px;padding:1px 5px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.th{background:none;border:3px solid transparent;padding:0;border-radius:8px;text-align:left}
+.th.pv{border-color:var(--grn)}.th.lv{border-color:var(--red)}
+.screen{position:relative;aspect-ratio:16/9;background:#000;border-radius:5px;overflow:hidden;container-type:inline-size;color:#fff}
+.screen>*{position:absolute}
+.bg,.mv{inset:0;width:100%;height:100%}.mv{object-fit:contain}
+.txt{inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6cqw;line-height:1.25;text-shadow:0 .3cqw 1cqw rgba(0,0,0,.45)}
+.txt em{display:block;font-size:.5em;margin-top:.5em;opacity:.8}
+.ov{inset:0;background:#000;display:grid;place-items:center;font:500 7cqw "Newsreader",serif;z-index:4;text-align:center}
+.ov img{width:40%;height:60%;object-fit:contain}
+.screen.f>*{animation:fi .4s}@keyframes fi{from{opacity:0}}
+.tk{left:0;right:0;display:flex;align-items:center;overflow:hidden;z-index:3;font-family:"Instrument Sans",sans-serif;font-weight:600}
+.tkl{padding:.4em .8em;background:rgba(0,0,0,.35);white-space:nowrap}.tkw{flex:1;overflow:hidden}
+.tkt{display:inline-block;white-space:nowrap;padding:.4em 0}
+@keyframes tk{from{transform:translateX(100cqw)}to{transform:translateX(-100%)}}
+.lab{font-size:11px;font-weight:700;margin:2px 0}.lab.p{color:var(--grn)}.lab.l{color:var(--red)}
+.ctl{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.tabs{display:flex;background:var(--p2);overflow:auto}
+.tabs button{border:0;border-radius:0;background:none;padding:9px 16px;border-bottom:3px solid transparent;font-weight:600;color:var(--mut)}
+.tabs button.on{background:var(--p);color:var(--ink);border-bottom-color:var(--blue)}
+.dbar{display:flex;gap:6px;padding:6px;flex-wrap:wrap;align-items:center}.dbar input[type=search]{max-width:260px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.tile{border:2px solid transparent;border-radius:8px;padding:4px;cursor:pointer;background:var(--p2)}
+.tile img,.tile video,.tile .ph{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:5px;display:grid;place-items:center;font-size:28px;background:var(--bg);pointer-events:none}
+.tile .nm{font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;place-items:center;z-index:40;padding:12px}
+#modal.show{display:grid}
+#mc{background:var(--p);border:1px solid var(--ln);border-radius:10px;width:min(620px,100%);max-height:94vh;overflow:auto;padding:16px}
+#modal.wide #mc{width:min(1000px,100%)}
+#mc h3{margin:0 0 10px;font:500 20px "Newsreader",serif;display:flex;align-items:center}
+.g{display:grid;gap:8px}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.split{display:grid;grid-template-columns:230px 1fr;gap:12px}@media(max-width:700px){.split,.two{grid-template-columns:1fr}}
+label.f{display:grid;gap:3px;font-size:12px;color:var(--mut)}
+#out{position:fixed;inset:0;background:#000;z-index:60;display:none;cursor:none}
+#out .screen{width:100%;height:100%;aspect-ratio:auto;border-radius:0}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--grn);color:#06231a;padding:8px 16px;border-radius:20px;font-weight:600;display:none;z-index:80;max-width:90%}
+.meter{height:8px;background:var(--p2);border-radius:4px;overflow:hidden}.meter b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--grn))}
+canvas{width:100%;border-radius:6px;background:#000;display:block}
+.mo{background-size:300% 300%!important;animation:mo 16s ease-in-out infinite}
+@keyframes mo{0%,100%{background-position:0 0}50%{background-position:100% 100%}}
+.m-stars{background-image:radial-gradient(1.5px 1.5px at 20% 30%,#fff,transparent),radial-gradient(1.5px 1.5px at 70% 60%,#fff,transparent),radial-gradient(1px 1px at 40% 80%,#fff,transparent),radial-gradient(1px 1px at 85% 20%,#fff,transparent),linear-gradient(#050a1f,#0f1d4a)!important;background-size:200px 200px,260px 260px,180px 180px,320px 320px,100% 100%!important;animation:st 40s linear infinite}
+@keyframes st{to{background-position:-400px 400px,-520px 520px,-360px 360px,-640px 640px,0 0}}
+@media(prefers-reduced-motion:reduce){.mo,.m-stars{animation:none}}
+.cd{inset:0;background:radial-gradient(#10264d,#050a18);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:4;text-align:center;font-family:Newsreader,Georgia,serif}
+.cd b{font-size:20cqw;font-weight:500;font-variant-numeric:tabular-nums;line-height:1}.cd span{font-size:5cqw;opacity:.85;margin-bottom:2cqw}
+.al{left:0;right:0;top:0;z-index:5;background:#e5484d;color:#fff;font:700 4.2cqw 'Instrument Sans',sans-serif;text-align:center;padding:1.2cqw 2cqw;animation:al 1s ease-in-out infinite}
+@keyframes al{50%{background:#a8262b}}
+</style></head>
+<body>
+<header><b id="cn"></b><small>ChurchVision Studio</small><span class="sp"></span>
+<button data-a="stream">Live stream</button><button data-a="bkm">Backup</button><button data-a="alm">Countdown / Alerts</button><button data-a="tkm">Ticker</button><button data-a="setm">Settings</button><button class="go" data-a="outw">Output window</button><button data-a="fso">Fullscreen</button></header>
+<div id="ws">
+<section id="sch" class="pn"><h2>Schedule <span class="sp"></span><button data-a="tplm" style="padding:1px 8px">Plans</button><button data-a="clrS" style="padding:1px 8px">Clear</button></h2><div class="pb" id="sl"></div></section>
+<section id="slp" class="pn"><h2 id="slt">Slides · double-click a slide to show it live</h2><div class="pb"><div class="sgrid" id="sg"></div></div></section>
+<section id="lvp" class="pn"><h2>Preview and live</h2><div class="pb">
+ <div class="lab p">PREVIEW</div><div class="screen" id="pvs"></div>
+ <div class="ctl"><button class="go" data-a="take">Go live</button><span class="mut" id="pvt"></span></div>
+ <div class="lab l">LIVE</div><div class="screen" id="lv"></div>
+ <div class="ctl"><button data-a="prev">Prev</button><button class="pri" data-a="next">Next</button><button id="bc" data-a="clr">Clear text</button><button id="bl" data-a="logo">Logo</button><button id="bb" data-a="blk">Black</button></div>
+ <div class="mut" id="lt">Nothing on screen</div><div class="mut" id="tm"></div>
+ <audio id="aud" controls hidden style="width:100%;margin-top:6px"></audio></div></section>
+<section id="dock" class="pn"><div class="tabs" id="tabs"></div><div class="dbar" id="dbar"></div><div class="pb" id="dl"></div></section>
+</div>
+<div id="modal"><div id="mc" role="dialog" aria-modal="true"></div></div>
+<div id="out"><div class="screen" id="os"></div></div><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),uid=()=>Math.random().toString(36).slice(2,8),now=()=>Date.now();
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])).replace(/\n/g,"<br>");
+const raw=s=>String(s||"");
+const BG={Dawn:["#f4a259","#8c3b6b","#2a1b4d"],Deep:["#0f4c75","#0a1d3a"],Emerald:["#2f6f4e","#0d2a22"],Ember:["#c8372d","#3b0f1f"],Black:["#000"],White:["#f4f6fb"],Aurora:["#0b3d4f","#1fa37a","#5b3fa0","#0b1a3a"],Sunrise:["#ff9a5a","#e8556b","#6a2c91","#1b1040"],Ocean:["#0a5a8a","#1aa6b7","#0a2a5e"],Violet:["#3a1c71","#7b3fb5","#d76d77"],Fire:["#ff6a00","#c8372d","#3b0f1f"],Forest:["#1d5a3a","#3f9a6a","#0a2a1e"],Stars:["#050a1f","#0f1d4a"]};
+const MOT={Aurora:"mo",Sunrise:"mo",Ocean:"mo",Violet:"mo",Fire:"mo",Forest:"mo",Stars:"m-stars"};
+const BIB=`Genesis 1:1|In the beginning God created the heaven and the earth.
+Joshua 1:9|Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.
+Psalm 23:1|The LORD is my shepherd; I shall not want.
+Psalm 23:2|He maketh me to lie down in green pastures: he leadeth me beside the still waters.
+Psalm 23:3|He restoreth my soul: he leadeth me in the paths of righteousness for his name's sake.
+Psalm 23:4|Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me.
+Psalm 23:5|Thou preparest a table before me in the presence of mine enemies: thou anointest my head with oil; my cup runneth over.
+Psalm 23:6|Surely goodness and mercy shall follow me all the days of my life: and I will dwell in the house of the LORD for ever.
+Psalm 46:1|God is our refuge and strength, a very present help in trouble.
+Proverbs 3:5|Trust in the LORD with all thine heart; and lean not unto thine own understanding.
+Proverbs 3:6|In all thy ways acknowledge him, and he shall direct thy paths.
+Isaiah 41:10|Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.
+Jeremiah 29:11|For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, to give you an expected end.
+Matthew 11:28|Come unto me, all ye that labour and are heavy laden, and I will give you rest.
+John 3:16|For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.
+John 14:6|Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me.
+Romans 8:28|And we know that all things work together for good to them that love God, to them who are the called according to his purpose.
+Philippians 4:13|I can do all things through Christ which strengtheneth me.
+1 John 4:8|He that loveth not knoweth not God; for God is love.
+Numbers 6:24-26|The LORD bless thee, and keep thee: The LORD make his face shine upon thee, and be gracious unto thee: The LORD lift up his countenance upon thee, and give thee peace.
+Deuteronomy 31:6|Be strong and of a good courage, fear not, nor be afraid of them: for the LORD thy God, he it is that doth go with thee; he will not fail thee, nor forsake thee.
+Psalm 27:1|The LORD is my light and my salvation; whom shall I fear? the LORD is the strength of my life; of whom shall I be afraid?
+Psalm 119:105|Thy word is a lamp unto my feet, and a light unto my path.
+Matthew 6:33|But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.
+Matthew 28:19|Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost:
+Romans 12:2|And be not conformed to this world: but be ye transformed by the renewing of your mind, that ye may prove what is that good, and acceptable, and perfect, will of God.
+Ephesians 2:8|For by grace are ye saved through faith; and that not of yourselves: it is the gift of God:
+2 Timothy 1:7|For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.
+Hebrews 11:1|Now faith is the substance of things hoped for, the evidence of things not seen.
+Revelation 21:4|And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away.`.split("\n").map(l=>l.split("|"));
+const mk=(t,r,o)=>Object.assign({t:t||"",r:r||"",bg:"Deep",c:"#ffffff",s:1,n:""},o);
+function seed(){return{pres:[{id:uid(),title:"Hope Endtime welcome",ts:now(),slides:[mk("Welcome to Hope Endtime","We are glad you are here",{bg:"Dawn"}),mk("Please silence your phones","",{bg:"Deep"})]}],
+songs:[{id:uid(),title:"Amazing Grace",author:"John Newton",cat:"Hymn",fav:1,bg:"Dawn",ts:now(),lyrics:"Amazing grace! how sweet the sound,\nThat saved a wretch like me!\nI once was lost, but now am found;\nWas blind, but now I see.\n\n’Twas grace that taught my heart to fear,\nAnd grace my fears relieved;\nHow precious did that grace appear\nThe hour I first believed.\n\nThrough many dangers, toils and snares,\nI have already come;\n’Tis grace hath brought me safe thus far,\nAnd grace will lead me home."},
+{id:uid(),title:"Come, Thou Fount",author:"Robert Robinson",cat:"Hymn",fav:0,bg:"Deep",ts:now(),lyrics:"Come, thou Fount of every blessing,\nTune my heart to sing thy grace;\nStreams of mercy, never ceasing,\nCall for songs of loudest praise.\n\nHere I raise mine Ebenezer;\nHither by thy help I’m come;\nAnd I hope, by thy good pleasure,\nSafely to arrive at home."}],
+ann:[{id:uid(),title:"Announcements",text:"Welcome to Hope Endtime\nJoin us every Sunday\n\nPrayer meeting\nWednesday at 6:00 PM"}],
+favs:[],sch:[],set:{theme:"dark",font:"serif",tr:"fade",church:"Hope Endtime",logo:""},
+tk:{on:true,label:"HOPE ENDTIME",msgs:"Welcome to Hope Endtime\nPrayer meeting Wednesday 6:00 PM\nGive online or in person: thank you for your generosity",speed:5,size:1,bg:"#1a4fb0",c:"#ffffff",pos:"bottom"}}}
+let D;try{D=JSON.parse(localStorage.getItem("cvs2"))}catch(e){}D=D||seed();
+const save=()=>{try{localStorage.setItem("cvs2",JSON.stringify(D))}catch(e){}};
+const cd=()=>D.cd||(D.cd={on:0,end:0,label:"Service starts in"}),al=()=>D.al||(D.al={on:0,text:"",until:0});
+const mmss=ms=>{const s=Math.max(0,Math.ceil(ms/1e3)),h=Math.floor(s/3600),m=Math.floor(s%3600/60);return(h?h+":"+String(m).padStart(2,"0"):String(m).padStart(2,"0"))+":"+String(s%60).padStart(2,"0")};
+const cdTxt=()=>mmss(cd().end-now());
+const cdHTML=()=>{const c=cd();return c.on?`<div class="cd"><span>${esc(c.label)}</span><b class="cdv">${cdTxt()}</b></div>`:""};
+const alHTML=()=>{const a=al();return a.on?`<div class="al">${esc(a.text)}</div>`:""};
+let M=[],tab="songs",dq="",SEL=new Set(),PV={sl:[],i:0,t:""},Q=[],qi=-1,qt="",black=0,logo=0,clr=0,t0=0,cp=null,cs=0,OW=null,selK="",selId="";
+const FL=[["serif","Serif (Newsreader)","Newsreader,Georgia,serif"],["sans","Sans-serif (Instrument)","'Instrument Sans',system-ui,sans-serif"],...["Playfair Display","Montserrat","Poppins","Lora","Oswald","Bebas Neue","Merriweather","Roboto Slab","Cinzel","Cormorant Garamond","Raleway","Dancing Script","Pacifico","Lobster","Great Vibes","Caveat","Anton","Archivo Black","Abril Fatface"].map(n=>[n,n,`'${n}',${/Dancing|Pacifico|Lobster|Great Vibes|Caveat/.test(n)?"cursive":/Playfair|Lora|Merriweather|Roboto Slab|Cinzel|Cormorant|Abril/.test(n)?"serif":"sans-serif"}`])];
+const FONTF=s=>{const k=(s&&s.f)||D.set.font,f=FL.find(x=>x[0]===k)||FL[0];return f[2]};
+const fontOpts=(sel,d)=>(d?'<option value="">Default font</option>':"")+FL.map(f=>`<option value="${f[0]}" ${sel===f[0]?"selected":""} style="font-family:${f[2]}">${f[1]}</option>`).join("");
+const bibAll=()=>BIB;
+const css=a=>a.length>1?`linear-gradient(160deg,${a.join(",")})`:a[0];
+const bgCss=s=>{if(s.bg.startsWith("m:")){const m=M.find(x=>x.id===s.bg.slice(2));if(m)return`url(${m.url}) center/cover`}return css(BG[s.bg]||BG.Deep)};
+/* storage for media files */
+const idb=()=>new Promise((res,rej)=>{const r=indexedDB.open("cvs2",2);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains("m"))d.createObjectStore("m",{keyPath:"id"});if(!d.objectStoreNames.contains("b"))d.createObjectStore("b",{keyPath:"id"})};r.onsuccess=()=>res(r.result);r.onerror=()=>rej()});
+let EV=[];
+async function bPut(){try{(await idb()).transaction("b","readwrite").objectStore("b").put({id:"kjv",v:EV})}catch(e){}}
+async function bLoad(){try{const rq=(await idb()).transaction("b").objectStore("b").get("kjv");rq.onsuccess=()=>{const r=rq.result;if(r&&r.v){const have=new Set(BIB.map(x=>x[0]));EV=r.v;r.v.forEach(a=>{if(!have.has(a[0]))BIB.push(a)});listDock()}}}catch(e){}}
+async function mPut(m){try{(await idb()).transaction("m","readwrite").objectStore("m").put({id:m.id,name:m.name,type:m.type,blob:m.blob,fav:m.fav})}catch(e){}}
+async function mDel(id){try{(await idb()).transaction("m","readwrite").objectStore("m").delete(id)}catch(e){}}
+async function mLoad(){try{const rq=(await idb()).transaction("m").objectStore("m").getAll();rq.onsuccess=()=>{M=rq.result.map(x=>({...x,url:URL.createObjectURL(x.blob)}));listDock();renderSl();paint(1)}}catch(e){}}
+/* drawing */
+function draw(el,s,out,hide){
+ if(!s){el.innerHTML='<div class="bg" style="background:#000"></div>';return}
+ let h=`<div class="bg ${MOT[s.bg]||""}" style="background:${bgCss(s)}"></div>`;
+ if(s.mt==="video")h+=`<video class="mv" src="${s.mu}" ${out?"autoplay controls":"muted preload=metadata"}></video>`;
+ else if(s.mt==="image")h+=`<img class="mv" src="${s.mu}" alt="">`;
+ if((s.t||s.r)&&!hide)h+=`<div class="txt" style="color:${s.c};font-family:${FONTF(s)};font-size:${5.4*s.s}cqw;${txs(s)}">${esc(s.t)}${s.r?`<em>${esc(s.r)}</em>`:""}</div>`;
+ el.innerHTML=h;
+ if(out&&D.set.tr==="fade"){el.classList.remove("f");void el.offsetWidth;el.classList.add("f")}
+}
+const logoHTML=()=>{const m=M.find(x=>x.id===D.set.logo);return m?`<img src="${m.url}" alt="">`:esc(D.set.church)};
+function tkHTML(){const t=D.tk;if(!t.on||!t.msgs.trim())return"";const txt=t.msgs.split("\n").filter(x=>x.trim()).join("   ✦   ");
+ const dur=Math.max(10,txt.length*(12-t.speed)*.07),dl=-((now()/1000)%dur);
+ return`<div class="tk" style="${t.pos}:0;background:${t.bg};color:${t.c};font-size:${2.6*t.size}cqw">${t.label?`<b class="tkl">${esc(t.label)}</b>`:""}<div class="tkw"><span class="tkt" style="animation:tk ${dur}s linear ${dl}s infinite">${esc(txt)}</span></div></div>`}
+function ovl(el){el.querySelectorAll(".ov,.tk,.cd,.al").forEach(x=>x.remove());el.insertAdjacentHTML("beforeend",tkHTML()+cdHTML()+alHTML());
+ if(black)el.insertAdjacentHTML("beforeend",'<div class="ov"></div>');else if(logo)el.insertAdjacentHTML("beforeend",`<div class="ov" style="background:#0b1220;color:#fff">${logoHTML()}</div>`)}
+const outs=()=>{const a=[$("#os")];if(OW&&!OW.closed){const e=OW.document.getElementById("os");if(e)a.push(e)}return a};
+function paint(redraw){
+ const c=Q[qi];
+ if(redraw){draw($("#lv"),c,0,clr);outs().forEach(e=>draw(e,c,1,clr));$("#lt").textContent=c?`Live: ${qt} · ${qi+1} of ${Q.length}`:"Nothing on screen";renderSl()}
+ ovl($("#lv"));outs().forEach(ovl);
+ $("#bb").classList.toggle("on",!!black);$("#bl").classList.toggle("on",!!logo);$("#bc").classList.toggle("on",!!clr);
+}
+function paintPV(){draw($("#pvs"),PV.sl[PV.i]);$("#pvt").textContent=PV.t?`${PV.t} · ${PV.i+1}/${PV.sl.length}`:"Select an item"}
+function send(sl,i,t){Q=sl;qi=i||0;qt=t;black=0;logo=0;clr=0;if(!t0)t0=now();paint(1);toast("Live: "+t)}
+function step(d){if(qi<0)return;const n=qi+d;if(n>=0&&n<Q.length){qi=n;paint(1)}}
+function toast(m){const t=$("#toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display="none",2600)}
+/* items */
+const CH=/^[A-G][#b]?(m|maj|min|sus|dim|aug|add)?\d*(\/[A-G][#b]?)?$/,isCh=l=>{const t=l.trim().split(/\s+/);return !!l.trim()&&t.every(x=>CH.test(x))};
+const NT=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],FLT={Db:'C#',Eb:'D#',Gb:'F#',Ab:'G#',Bb:'A#'};
+const trC=(c,d)=>c.replace(/[A-G][#b]?/g,m=>{m=FLT[m]||m;const i=NT.indexOf(m);return i<0?m:NT[(i+d+12)%12]});
+const txs=s=>(s.al==='l'?'align-items:flex-start;text-align:left;':'')+(s.o?`-webkit-text-stroke:${s.o*.15}cqw #000;paint-order:stroke fill;`:'')+(s.sh!=null&&s.sh!==''?`text-shadow:0 .3cqw ${s.sh*.6}cqw rgba(0,0,0,.7);`:'');
+const songSlides=s=>raw(s.lyrics).split(/\n\s*\n/).filter(b=>b.trim()).map(b=>{const L=b.trim().split("\n").filter(l=>!isCh(l));let lab="";if(L[0]&&/^\[.+\]$/.test(L[0].trim()))lab=L.shift().trim().slice(1,-1);return mk(L.join("\n"),(lab?lab+" · ":"")+s.title,{bg:s.bg||"Deep",f:s.f})});
+function resolve(k,id){
+ if(k==="song"){const s=D.songs.find(x=>x.id===id);return s&&{t:s.title,sub:s.author||s.cat,sl:songSlides(s)}}
+ if(k==="pres"){const p=D.pres.find(x=>x.id===id);return p&&{t:p.title,sub:p.slides.length+" slides",sl:p.slides}}
+ if(k==="verse"){const v=BIB.find(x=>x[0]===id);return v&&{t:v[0],sub:"KJV",sl:[mk(v[1],v[0]+" KJV",{bg:"Emerald"})]}}
+ if(k==="media"){const m=M.find(x=>x.id===id);return m&&{t:m.name,sub:m.type,sl:[mk("",m.name,{bg:"Black",mt:m.type,mu:m.url})]}}
+ if(k==="ann"){const a=D.ann.find(x=>x.id===id);return a&&{t:a.title,sub:"Announcement",sl:raw(a.text).split(/\n\s*\n/).filter(b=>b.trim()).map(b=>mk(b.trim(),a.title,{bg:"Dawn"}))}}
+}
+function pick(k,id,i,live){
+ const r=resolve(k,id);if(!r||!r.sl.length)return toast("This item is empty or missing");
+ if(k==="media"&&M.find(m=>m.id===id).type==="audio"){if(live)A.play({dataset:{id}});return}
+ PV={sl:r.sl,i:i||0,t:r.t};selK=k;selId=id;
+ document.querySelectorAll("[data-p]").forEach(x=>x.classList.toggle("sel",x.dataset.p===k&&x.dataset.id===id));
+ paintPV();renderSl();if(live)send(PV.sl,PV.i,PV.t)
+}
+function renderSl(){
+ $("#slt").textContent=PV.t?`${PV.t} · double-click a slide to show it live`:"Slides · select an item below or in the schedule";
+ $("#sg").innerHTML=PV.sl.map((s,i)=>`<button class="th ${i===PV.i?"pv":""} ${Q===PV.sl&&qi===i?"lv":""}" data-s="${i}" aria-label="Slide ${i+1}"><div class="screen" id="t${i}"></div></button>`).join("");
+ PV.sl.forEach((s,i)=>draw($("#t"+i),s));
+}
+function renderSched(){
+ $("#sl").innerHTML=D.sch.map((x,i)=>{const r=resolve(x.k,x.id);return`<div class="row" data-p="${x.k}" data-id="${x.id}" tabindex="0"><span class="badge">${x.k}</span><span class="rt sp">${r?esc(r.t):"(missing)"}</span><button data-a="sm" data-i="${i}" data-d="-1" aria-label="Move up">↑</button><button data-a="sm" data-i="${i}" data-d="1" aria-label="Move down">↓</button><button class="dng" data-a="sx" data-i="${i}" aria-label="Remove">×</button></div>`}).join("")||'<p class="mut" style="padding:8px">Your service order is empty. Use the + button on any song, verse, image or presentation below.</p>';
+}
+/* dock */
+const TABS=[["songs","Songs"],["bible","Scriptures"],["media","Media"],["pres","Presentations"],["ann","Announcements"]];
+function renderDock(){
+ $("#tabs").innerHTML=TABS.map(t=>`<button class="${t[0]===tab?"on":""}" data-a="tab" data-t="${t[0]}">${t[1]}</button>`).join("");
+ const b={songs:`<button class="pri" data-a="newSong">New song</button><label class="btn">Import lyrics (.txt)<input type="file" hidden accept=".txt" data-fc="impS"></label>`,
+  bible:`<input id="refq" placeholder="Quick lookup: John 3:16-18" style="max-width:200px"><button class="go" data-a="refGo">Show</button><button data-a="projSel">Project selected</button><button data-a="projOne">Selected as one slide</button><label class="btn pri">Import whole Bible (.txt)<input type="file" hidden accept=".txt" data-fc="impB"></label><span class="mut">One verse per line: John 3:16|For God so loved the world…</span>`,
+  media:`<label class="btn pri">Add images, video, audio<input type="file" hidden multiple accept="image/*,video/*,audio/*" data-fc="impM"></label><span class="mut">Double-click an image or video to show it on the projector.</span>`,
+  pres:`<button class="pri" data-a="newPres">New presentation</button><button data-a="sermm">Sermon notes</button><button data-a="qrm">Giving / QR</button><label class="btn go">Import PowerPoint (.pptx)<input type="file" hidden accept=".pptx,.txt,.md" data-fc="impP"></label>`,
+  ann:`<button class="pri" data-a="newAnn">New announcement</button>`}[tab];
+ $("#dbar").innerHTML=`<input type="search" data-f="dq" value="${esc(dq)}" placeholder="Search" aria-label="Search">${b}`;listDock();
+}
+const row=(k,id,t,sub,x)=>`<div class="row" data-p="${k}" data-id="${id}" tabindex="0"><span class="rt">${esc(t)}</span><span class="mut">${esc(sub)}</span><span class="sp"></span>${x||""}<button data-a="add" data-k="${k}" data-id="${id}" title="Add to schedule" aria-label="Add to schedule">+</button></div>`;
+const edDel=(k,id)=>`<button data-a="edit" data-k="${k}" data-id="${id}">Edit</button><button class="dng" data-a="del" data-k="${k}" data-id="${id}" aria-label="Delete">×</button>`;
+function listDock(){
+ const q=dq.toLowerCase();let h="";
+ if(tab==="songs")h=D.songs.filter(s=>!q||(s.title+s.author+raw(s.lyrics)).toLowerCase().includes(q)).sort((a,b)=>b.fav-a.fav||a.title.localeCompare(b.title)).map(s=>row("song",s.id,(s.fav?"★ ":"")+s.title,s.author||s.cat,`<button data-a="fav" data-k="song" data-id="${s.id}" aria-label="Favourite">${s.fav?"★":"☆"}</button>`+edDel("song",s.id))).join("");
+ if(tab==="pres")h=D.pres.filter(p=>!q||p.title.toLowerCase().includes(q)).map(p=>row("pres",p.id,p.title,p.slides.length+" slides",edDel("pres",p.id))).join("");
+ if(tab==="ann")h=D.ann.filter(p=>!q||p.title.toLowerCase().includes(q)).map(p=>row("ann",p.id,p.title,"",edDel("ann",p.id))).join("");
+ if(tab==="bible")h=BIB.filter(v=>!q||(v[0]+" "+v[1]).toLowerCase().includes(q)).slice(0,150).map(v=>`<div class="row" data-p="verse" data-id="${esc(v[0])}" tabindex="0"><input type="checkbox" data-f="bk" data-r="${esc(v[0])}" ${SEL.has(v[0])?"checked":""} aria-label="Select ${esc(v[0])}"><div class="sp"><b>${esc(v[0])}</b> <span class="mut">KJV</span> ${esc(v[1])}</div><button data-a="fav" data-k="verse" data-id="${esc(v[0])}" aria-label="Favourite">${D.favs.includes(v[0])?"★":"☆"}</button><button data-a="add" data-k="verse" data-id="${esc(v[0])}">+</button></div>`).join("");
+ if(tab==="media"){h=`<div class="tiles">`+M.filter(m=>!q||m.name.toLowerCase().includes(q)).map(m=>`<div class="tile" data-p="media" data-id="${m.id}" tabindex="0">${m.type==="image"?`<img src="${m.url}" alt="">`:m.type==="video"?`<video src="${m.url}" preload="metadata" muted></video>`:`<div class="ph">♪</div>`}<div class="nm">${esc(m.name)}</div><div class="ctl" style="margin:4px 0 0"><button data-a="fav" data-k="media" data-id="${m.id}">${m.fav?"★":"☆"}</button><button data-a="add" data-k="media" data-id="${m.id}">+</button><button class="dng" data-a="del" data-k="media" data-id="${m.id}">×</button></div></div>`).join("")+"</div>"}
+ $("#dl").innerHTML=h||`<p class="mut" style="padding:8px">${tab==="media"?"No media yet. Add images, video or audio to begin.":"Nothing found."}</p>`;
+ document.querySelectorAll("#dl [data-p]").forEach(x=>x.classList.toggle("sel",x.dataset.p===selK&&x.dataset.id===selId));
+}
+/* modal */
+function modal(h,wide){$("#mc").innerHTML=h;$("#modal").className="show"+(wide?" wide":"")}
+const closeBtn='<span class="sp"></span><button data-a="close">Close</button>';
+function cleanup(){if(ST.sr){ST.sr.onend=null;ST.sr.stop();ST.sr=null;ST.cap=""}if(ST.rec&&ST.rec.state==="recording")ST.rec.stop();if(ST.stream){ST.stream.getTracks().forEach(t=>t.stop());ST.stream=null;ST.an=null}$("#modal").className="";$("#mc").innerHTML="";renderAll()}
+function renderAll(){renderSched();renderDock();renderSl();paintPV();paint(1)}
+const bgOpts=sel=>Object.keys(BG).map(k=>`<option ${sel===k?"selected":""}>${k}</option>`).join("");
+function SE(id){const s=D.songs.find(x=>x.id===id);modal(`<h3>Edit song${closeBtn}</h3><div class="g"><input data-f="sg" data-k="title" data-id="${id}" value="${esc(s.title)}" aria-label="Title"><div class="two"><input data-f="sg" data-k="author" data-id="${id}" value="${esc(s.author)}" placeholder="Author" aria-label="Author"><select data-f="sg" data-k="bg" data-id="${id}" aria-label="Background">${bgOpts(s.bg)}</select></div><div class="two"><select data-f="sg" data-k="f" data-id="${id}" aria-label="Font">${fontOpts(s.f||"",1)}</select><div class="ctl" style="margin:0"><button data-a="trp" data-id="${id}" data-d="-1">Chords -1</button><button data-a="trp" data-id="${id}" data-d="1">Chords +1</button><button data-a="spl" data-id="${id}">Auto-split</button></div></div><textarea data-f="sg" data-k="lyrics" data-id="${id}" style="min-height:280px" aria-label="Lyrics">${esc(s.lyrics).replace(/<br>/g,"\n")}</textarea><p class="mut" style="margin:0">A blank line starts a new slide. Begin a section with a label such as [Chorus] to show it on screen.</p></div>`)}
+function AE(id){const a=D.ann.find(x=>x.id===id);modal(`<h3>Edit announcement${closeBtn}</h3><div class="g"><input data-f="an" data-k="title" data-id="${id}" value="${esc(a.title)}" aria-label="Title"><textarea data-f="an" data-k="text" data-id="${id}" style="min-height:220px" aria-label="Text">${esc(a.text).replace(/<br>/g,"\n")}</textarea><p class="mut" style="margin:0">A blank line starts a new slide.</p></div>`)}
+const P=()=>D.pres.find(p=>p.id===cp),SL=()=>P().slides[cs];
+function PE(id){if(id){cp=id;cs=0}const p=P(),s=SL(),imgs=M.filter(m=>m.type==="image");
+ modal(`<h3>Edit presentation${closeBtn}</h3><div class="split"><div><div class="ctl"><button data-a="addS">Add</button><button data-a="dupS">Duplicate</button><button data-a="mvS" data-d="-1" aria-label="Move up">↑</button><button data-a="mvS" data-d="1" aria-label="Move down">↓</button><button class="dng" data-a="delS">Delete</button></div><div class="g">${p.slides.map((x,i)=>`<button class="th ${i===cs?"pv":""}" data-a="selS" data-i="${i}" aria-label="Slide ${i+1}"><div class="screen" id="pt${i}"></div></button>`).join("")}</div></div>
+ <div class="g"><input data-f="pt" value="${esc(p.title)}" aria-label="Presentation title"><div class="screen" id="pe"></div><textarea data-f="st" aria-label="Slide text">${esc(s.t).replace(/<br>/g,"\n")}</textarea><input data-f="sr" value="${esc(s.r)}" placeholder="Subtitle or reference"><div class="two"><select data-f="sb" aria-label="Background">${Object.keys(BG).map(k=>`<option ${s.bg===k?"selected":""}>${k}</option>`).join("")}${imgs.map(m=>`<option value="m:${m.id}" ${s.bg==="m:"+m.id?"selected":""}>Image: ${esc(m.name)}</option>`).join("")}</select><input type="color" data-f="sc" value="${s.c}" aria-label="Text colour"></div><select data-f="sf" aria-label="Font">${fontOpts(s.f||"",1)}</select><div class="two"><select data-f="sa" aria-label="Alignment"><option value="c" ${s.al!=="l"?"selected":""}>Centered</option><option value="l" ${s.al==="l"?"selected":""}>Left</option></select><label class="f">Outline<input type="range" min="0" max="4" step=".5" value="${s.o||0}" data-f="so"></label></div><label class="f">Shadow<input type="range" min="0" max="4" step=".5" value="${s.sh==null?1:s.sh}" data-f="sw"></label><label class="f">Text size<input type="range" min=".4" max="2" step=".05" value="${s.s}" data-f="ss"></label><textarea data-f="sn" placeholder="Presenter notes" style="min-height:60px">${esc(s.n).replace(/<br>/g,"\n")}</textarea><button class="go" data-a="presFrom">Show live from slide ${cs+1}</button></div></div>`,1);
+ p.slides.forEach((x,i)=>draw($("#pt"+i),x));draw($("#pe"),s)}
+function touch(r){const p=P();p.ts=now();save();if(r){draw($("#pt"+cs),SL());draw($("#pe"),SL());if(Q===p.slides)paint(1);if(PV.sl===p.slides){paintPV()}}}
+/* handlers */
+const H={
+ pt:t=>{P().title=t.value;save()},st:t=>{SL().t=t.value;touch(1)},sr:t=>{SL().r=t.value;touch(1)},sb:t=>{SL().bg=t.value;touch(1)},sc:t=>{SL().c=t.value;touch(1)},ss:t=>{SL().s=+t.value;touch(1)},sn:t=>{SL().n=t.value;save()},
+ sg:t=>{const s=D.songs.find(x=>x.id===t.dataset.id);s[t.dataset.k]=t.value;s.ts=now();save()},
+ an:t=>{const a=D.ann.find(x=>x.id===t.dataset.id);a[t.dataset.k]=t.value;save()},
+ dq:t=>{dq=t.value;listDock()},
+ bk:t=>{t.checked?SEL.add(t.dataset.r):SEL.delete(t.dataset.r)},
+ tk:t=>{const k=t.dataset.k;D.tk[k]=t.type==="checkbox"?t.checked:t.type==="range"?+t.value:t.value;save();paint(0)},
+ cfg:t=>{const k=t.dataset.k;D.set[k]=t.value;save();if(k==="theme")document.documentElement.dataset.theme=t.value;if(k==="church")$("#cn").textContent=t.value||"Church";if(k==="font"||k==="logo")paint(1)},
+ sf:t=>{SL().f=t.value;touch(1)},sa:t=>{SL().al=t.value;touch(1)},so:t=>{SL().o=+t.value;touch(1)},sw:t=>{SL().sh=+t.value;touch(1)},cdl:t=>{cd().label=t.value;save();paint(0)},
+ stm:t=>{const k=t.dataset.k;ST[k]=t.type==="checkbox"?t.checked:t.value;if(k==="scene")ST.tf=now();if(k==="mic"&&ST.stream)ST.stream.getAudioTracks().forEach(a=>a.enabled=ST.mic)}};
+const hist=()=>{};
+const A={
+ tab:b=>{tab=b.dataset.t;dq="";renderDock()},
+ take:()=>{if(PV.sl.length)send(PV.sl,PV.i,PV.t);else toast("Select an item first")},
+ prev:()=>step(-1),next:()=>step(1),
+ clr:()=>{clr=clr?0:1;paint(1)},logo:()=>{logo=logo?0:1;paint()},blk:()=>{black=black?0:1;paint()},
+ add:b=>{D.sch.push({k:b.dataset.k,id:b.dataset.id});save();renderSched();toast("Added to schedule")},
+ sm:b=>{const i=+b.dataset.i,j=i+ +b.dataset.d;if(j<0||j>=D.sch.length)return;[D.sch[i],D.sch[j]]=[D.sch[j],D.sch[i]];save();renderSched()},
+ sx:b=>{D.sch.splice(+b.dataset.i,1);save();renderSched()},clrS:()=>{D.sch=[];save();renderSched()},
+ fav:b=>{const k=b.dataset.k,id=b.dataset.id;if(k==="song"){const s=D.songs.find(x=>x.id===id);s.fav=s.fav?0:1}else if(k==="verse"){const i=D.favs.indexOf(id);i<0?D.favs.push(id):D.favs.splice(i,1)}else{const m=M.find(x=>x.id===id);m.fav=!m.fav;mPut(m)}save();listDock()},
+ edit:b=>{const k=b.dataset.k;k==="song"?SE(b.dataset.id):k==="pres"?PE(b.dataset.id):AE(b.dataset.id)},
+ del:b=>{const k=b.dataset.k,id=b.dataset.id;if(k==="song")D.songs=D.songs.filter(x=>x.id!==id);if(k==="pres")D.pres=D.pres.filter(x=>x.id!==id);if(k==="ann")D.ann=D.ann.filter(x=>x.id!==id);if(k==="media"){M=M.filter(x=>x.id!==id);mDel(id)}D.sch=D.sch.filter(x=>!(x.k===k&&x.id===id));save();renderSched();listDock()},
+ newSong:()=>{const s={id:uid(),title:"New song",author:"",cat:"Worship",fav:0,bg:"Deep",ts:now(),lyrics:"[Verse 1]\n"};D.songs.unshift(s);save();listDock();SE(s.id)},
+ newPres:()=>{const p={id:uid(),title:"Untitled presentation",ts:now(),slides:[mk("Click to edit")]};D.pres.unshift(p);save();listDock();PE(p.id)},
+ newAnn:()=>{const a={id:uid(),title:"New announcement",text:"Type your announcement"};D.ann.unshift(a);save();listDock();AE(a.id)},
+ close:cleanup,
+ selS:b=>{cs=+b.dataset.i;PE()},addS:()=>{P().slides.splice(cs+1,0,mk(""));cs++;save();PE()},
+ dupS:()=>{P().slides.splice(cs+1,0,JSON.parse(JSON.stringify(SL())));cs++;save();PE()},
+ delS:()=>{if(P().slides.length>1){P().slides.splice(cs,1);cs=Math.max(0,cs-1);save();PE()}},
+ mvS:b=>{const a=P().slides,j=cs+ +b.dataset.d;if(j<0||j>=a.length)return;[a[cs],a[j]]=[a[j],a[cs]];cs=j;save();PE()},
+ presFrom:()=>{send(P().slides,cs,P().title);cleanup()},
+ projSel:()=>{const v=BIB.filter(x=>SEL.has(x[0]));if(!v.length)return toast("Tick one or more verses first");send(v.map(x=>mk(x[1],x[0]+" KJV",{bg:"Emerald"})),0,v[0][0]+" and more")},
+ projOne:()=>{const v=BIB.filter(x=>SEL.has(x[0]));if(!v.length)return toast("Tick one or more verses first");send([mk(v.map(x=>x[1]).join(" "),v.map(x=>x[0]).join("; ")+" KJV",{bg:"Emerald",s:v.length>2?.7:.9})],0,v[0][0]+" and more")},
+ play:b=>{const m=M.find(x=>x.id===b.dataset.id),a=$("#aud");a.src=m.url;a.hidden=false;a.play().catch(()=>{});toast("Playing "+m.name)},
+ outw:openOut,fso:()=>{const o=$("#out");o.style.display="block";try{o.requestFullscreen&&o.requestFullscreen().catch(()=>{})}catch(e){}paint(1)},
+ setm:()=>modal(`<h3>Settings${closeBtn}</h3><div class="g"><label class="f">Church name<input data-f="cfg" data-k="church" value="${esc(D.set.church)}"></label>
+  <label class="f">Logo screen image<select data-f="cfg" data-k="logo"><option value="">Church name only</option>${M.filter(m=>m.type==="image").map(m=>`<option value="${m.id}" ${D.set.logo===m.id?"selected":""}>${esc(m.name)}</option>`).join("")}</select></label>
+  <div class="two"><label class="f">Theme<select data-f="cfg" data-k="theme"><option value="dark" ${D.set.theme==="dark"?"selected":""}>Dark</option><option value="light" ${D.set.theme==="light"?"selected":""}>Light</option></select></label><label class="f">Slide font<select data-f="cfg" data-k="font">${fontOpts(D.set.font)}</select></label></div>
+  <label class="f">Transition<select data-f="cfg" data-k="tr"><option value="fade" ${D.set.tr==="fade"?"selected":""}>Fade</option><option value="cut" ${D.set.tr==="cut"?"selected":""}>Cut</option></select></label>
+  <button class="dng" data-a="reset">Erase all saved data</button>
+  <p class="mut">Shortcuts: ← → slides · B black · L logo · C clear text · Enter go live · F fullscreen · Esc close.<br><b>ChurchVision Studio</b> · Developer: Jerry Frankline · JFY MULTIPURPOSE TECHNOLOGIES<br>© 2026 JFY MULTIPURPOSE TECHNOLOGIES. All Rights Reserved.</p></div>`),
+ reset:b=>{if(b.dataset.s){try{localStorage.removeItem("cvs2")}catch(e){}D=seed();Q=[];qi=-1;PV={sl:[],i:0,t:""};cleanup();toast("Data erased")}else{b.dataset.s=1;b.textContent="Click again to erase everything"}},
+ tkm:()=>{const t=D.tk;modal(`<h3>Ticker${closeBtn}</h3><div class="g"><label><input type="checkbox" data-f="tk" data-k="on" ${t.on?"checked":""}> Show ticker on projector, live window and stream</label>
+  <label class="f">Messages (one per line)<textarea data-f="tk" data-k="msgs">${esc(t.msgs).replace(/<br>/g,"\n")}</textarea></label>
+  <div class="two"><label class="f">Label<input data-f="tk" data-k="label" value="${esc(t.label)}"></label><label class="f">Position<select data-f="tk" data-k="pos"><option value="bottom" ${t.pos==="bottom"?"selected":""}>Bottom</option><option value="top" ${t.pos==="top"?"selected":""}>Top</option></select></label></div>
+  <div class="two"><label class="f">Background<input type="color" data-f="tk" data-k="bg" value="${t.bg}"></label><label class="f">Text colour<input type="color" data-f="tk" data-k="c" value="${t.c}"></label></div>
+  <div class="two"><label class="f">Speed<input type="range" min="1" max="10" data-f="tk" data-k="speed" value="${t.speed}"></label><label class="f">Size<input type="range" min=".6" max="2" step=".1" data-f="tk" data-k="size" value="${t.size}"></label></div>
+  <p class="mut" style="margin:0">Changes show instantly on the live screen.</p></div>`)},
+ refGo:()=>{const q=$('#refq').value.trim().match(/^((?:\d\s*)?[A-Za-z][A-Za-z ]*?)\s*(\d+):(\d+)(?:\s*-\s*(\d+))?$/);if(!q)return toast('Type a reference like John 3:16-18');const b=q[1].toLowerCase().replace(/\s+/g,' ').trim(),c=+q[2],a=+q[3],z=+(q[4]||q[3]);const v=BIB.filter(x=>{const m=x[0].match(/^(.+) (\d+):(\d+)$/);return m&&m[1].toLowerCase()===b&&+m[2]===c&&+m[3]>=a&&+m[3]<=z}).sort((p,r)=>+p[0].split(':')[1]-+r[0].split(':')[1]);if(!v.length)return toast('Not found. Import the whole Bible to look up any verse.');const nm=v[0][0].replace(/:\d+$/,'')+':'+a+(z>a?'-'+z:'');PV={sl:[mk(v.map(x=>x[1]).join(' '),nm+' KJV',{bg:'Emerald',s:v.length>3?.6:v.length>1?.8:1})],i:0,t:nm};selK='';paintPV();renderSl();toast('Preview ready. Press Go live.')},
+ tplm:()=>{const T=D.tpl||(D.tpl=[]);modal(`<h3>Service plans${closeBtn}</h3><div class="g"><div class="two"><input id="tpn" placeholder="Plan name, e.g. Sunday service"><button class="go" data-a="tplSave">Save current schedule</button></div>${T.map((t,i)=>`<div class="row"><span class="rt sp">${esc(t.name)} <span class="mut">${t.items.length} items</span></span><button data-a="tplLoad" data-i="${i}">Load</button><button class="dng" data-a="tplDel" data-i="${i}">×</button></div>`).join('')||'<p class="mut">No saved plans yet.</p>'}</div>`)},
+ tplSave:()=>{const n=$('#tpn').value.trim();if(!n)return toast('Name the plan first');(D.tpl=D.tpl||[]).push({name:n,items:JSON.parse(JSON.stringify(D.sch))});save();A.tplm();toast('Plan saved')},
+ tplLoad:b=>{D.sch=JSON.parse(JSON.stringify(D.tpl[+b.dataset.i].items));save();cleanup();toast('Plan loaded')},
+ tplDel:b=>{D.tpl.splice(+b.dataset.i,1);save();A.tplm()},
+ bkm:()=>modal(`<h3>Backup and restore${closeBtn}</h3><div class="g"><p class="mut" style="margin:0">Copy this text and keep it in a note or email to yourself. Images, video and an imported Bible are not included.</p><textarea id="bkt" readonly style="min-height:110px">${esc(JSON.stringify(D))}</textarea><button class="go" data-a="bkCopy">Copy backup</button><label class="f">Restore: paste a backup here<textarea id="bkr"></textarea></label><button class="dng" data-a="bkRes">Restore (replaces current data)</button></div>`),
+ bkCopy:()=>{const t=$('#bkt');t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand('copy')}toast('Backup copied')},
+ bkRes:()=>{try{const o=JSON.parse($('#bkr').value);if(!o.pres||!o.songs||!o.set)throw 0;D=o;save();cleanup();document.documentElement.dataset.theme=D.set.theme;$('#cn').textContent=D.set.church;Q=[];qi=-1;paint(1);toast('Backup restored')}catch(e){toast('That is not a valid backup')}},
+ trp:b=>{const s=D.songs.find(x=>x.id===b.dataset.id),d=+b.dataset.d;s.lyrics=raw(s.lyrics).split('\n').map(l=>isCh(l)?l.replace(/\S+/g,x=>trC(x,d)):l).join('\n');save();SE(s.id)},
+ spl:b=>{const s=D.songs.find(x=>x.id===b.dataset.id);s.lyrics=raw(s.lyrics).split(/\n\s*\n/).map(bl=>{const o=[];let k=0,cur=[];bl.split('\n').forEach(l=>{cur.push(l);if(!isCh(l)&&!/^\[.+\]$/.test(l.trim()))k++;if(k>=4){o.push(cur.join('\n'));cur=[];k=0}});if(cur.length)o.push(cur.join('\n'));return o.join('\n\n')}).join('\n\n');save();SE(s.id)},
+ sermm:()=>modal(`<h3>Sermon notes${closeBtn}</h3><div class="g"><input id="smt" placeholder="Sermon title"><textarea id="smp" placeholder="One point per line. Put the missing word in double braces: God is {{faithful}}"></textarea><p class="mut" style="margin:0">Each slide reveals one more point, with the missing words blank until the next slide.</p><button class="go" data-a="sermGo">Create slides</button></div>`),
+ sermGo:()=>{const t=$('#smt').value.trim()||'Sermon notes',L=$('#smp').value.split('\n').filter(x=>x.trim());if(!L.length)return toast('Add at least one point');const full=l=>l.replace(/\{\{(.+?)\}\}/g,'$1'),blank=l=>l.replace(/\{\{(.+?)\}\}/g,(m,a)=>'_'.repeat(Math.max(4,a.length))),num=a=>a.map((x,j)=>(j+1)+'. '+x).join('\n');const sl=L.map((l,i)=>mk(num(L.slice(0,i).map(full).concat(blank(l))),t,{bg:'Deep',s:.8,al:'l'}));sl.push(mk(num(L.map(full)),t,{bg:'Deep',s:.8,al:'l'}));D.pres.unshift({id:uid(),title:t,ts:now(),slides:sl});save();tab='pres';cleanup();toast('Sermon slides created')},
+ qrm:()=>modal(`<h3>Giving and QR slide${closeBtn}</h3><div class="g"><input id="qh" value="Give online" placeholder="Heading"><input id="qu" placeholder="Link or text for the QR code"><input id="qn" placeholder="Extra line, e.g. Mobile money: 0700 000 000"><p class="mut" style="margin:0">The QR maker needs internet once. The finished slide is saved as a picture and works offline.</p><button class="go" data-a="qrGo">Create slide</button></div>`),
+ qrGo:async()=>{const u=$('#qu').value.trim();if(!u)return toast('Type the link first');try{await loadQR();const q=qrcode(0,'M');q.addData(u);q.make();const c=document.createElement('canvas');c.width=1280;c.height=720;const x=c.getContext('2d'),h=$('#qh').value,n=q.getModuleCount(),sz=Math.floor(440/n),w=n*sz,ox=640-w/2,oy=130;x.fillStyle='#0b1b3a';x.fillRect(0,0,1280,720);x.fillStyle='#fff';x.textAlign='center';x.font="500 64px Newsreader,Georgia,serif";x.fillText(h,640,90);x.fillRect(ox-20,oy-20,w+40,w+40);x.fillStyle='#000';for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(q.isDark(r,k))x.fillRect(ox+k*sz,oy+r*sz,sz,sz);x.fillStyle='#fff';x.font="32px 'Instrument Sans',sans-serif";x.fillText($('#qn').value,640,oy+w+80);D.pres.unshift({id:uid(),title:h||'Giving',ts:now(),slides:[mk('','',{bg:'Black',mt:'image',mu:c.toDataURL('image/png')})]});save();tab='pres';cleanup();toast('QR slide created')}catch(e){toast(e.message||'Could not make the QR code')}},
+ capOn:()=>{const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R)return smsg('Live captions are not supported in this browser. Try Chrome.');if(ST.sr){ST.sr.onend=null;ST.sr.stop();ST.sr=null;ST.cap='';return smsg('Captions off.')}const r=new R();r.continuous=true;r.interimResults=true;r.lang='en-US';r.onresult=e=>{let t='';for(let i=e.resultIndex;i<e.results.length;i++)t+=e.results[i][0].transcript;ST.cap=t.trim().split(' ').slice(-14).join(' ');clearTimeout(ST.ct);ST.ct=setTimeout(()=>ST.cap='',4000)};r.onend=()=>{if(ST.sr)try{r.start()}catch(e){}};r.onerror=e=>smsg('Captions: '+e.error);ST.sr=r;r.start();smsg('Captions on. They appear on the stream view.')},
+ alm:()=>{const c=cd(),a=al();modal(`<h3>Countdown and alerts${closeBtn}</h3><div class="g"><b>Countdown</b><div class="two"><label class="f">Minutes from now<input type="number" id="cdm" min="1" value="10"></label><label class="f">Or count down to a clock time<input type="time" id="cdt"></label></div><label class="f">Heading<input data-f="cdl" value="${esc(c.label)}"></label><div class="ctl"><button class="go" data-a="cdGo">Show countdown</button><button data-a="cdStop">Hide countdown</button></div><hr style="border:0;border-top:1px solid var(--ln);width:100%"><b>Alert banner</b><div class="ctl"><button data-a="alPre" data-t="NURSERY ALERT: Parents of child code ___ please go to the nursery">Nursery</button><button data-a="alPre" data-t="Please move your vehicle: it is blocking the exit">Vehicle</button><button data-a="alPre" data-t="Please silence your phones">Phones</button></div><label class="f">Message<input id="alt" value="${esc(a.text)}" placeholder="Type an alert"></label><label class="f">Hide after<select id="als"><option value="0">Until I hide it</option><option value="15000">15 seconds</option><option value="30000" selected>30 seconds</option><option value="60000">1 minute</option></select></label><div class="ctl"><button class="go" data-a="alGo">Show alert</button><button data-a="alStop">Hide alert</button></div><p class="mut" style="margin:0">Both appear on the projector, live window and stream.</p></div>`)},
+ cdGo:()=>{const t=$("#cdt").value;let end;if(t){const d=new Date(),p=t.split(":");d.setHours(+p[0],+p[1],0,0);if(d<=new Date())d.setDate(d.getDate()+1);end=+d}else end=now()+(+$("#cdm").value||10)*6e4;const c=cd();c.end=end;c.on=1;save();paint(0);toast("Countdown is live")},
+ cdStop:()=>{cd().on=0;save();paint(0)},
+ alPre:b=>{$("#alt").value=b.dataset.t},
+ alGo:()=>{const t=$("#alt").value.trim();if(!t)return toast("Type a message first");const s=+$("#als").value,a=al();a.text=t;a.on=1;a.until=s?now()+s:0;save();paint(0);toast("Alert is live")},
+ alStop:()=>{al().on=0;save();paint(0)},
+ stream:openStream,
+ camGo:camStart,camStop:()=>{if(ST.stream){ST.stream.getTracks().forEach(t=>t.stop());ST.stream=null;$("#cam").srcObject=null;smsg("Camera stopped.")}},
+ recGo:recStart,recStop:()=>{if(ST.rec&&ST.rec.state!=="inactive")ST.rec.stop()},
+ cvfs:()=>{const c=$("#cv");try{c.requestFullscreen()}catch(e){}},
+ ltGo:()=>{ST.ltOn=!ST.ltOn;$("#ltb").textContent=ST.ltOn?"Hide lower third":"Show lower third"}
+};
+/* output window */
+const FONTURL=document.querySelector("link[rel=stylesheet]").href;
+function openOut(){
+ try{OW=window.open("","cv_output","width=960,height=540")}catch(e){OW=null}
+ if(OW&&OW.document){OW.document.open();OW.document.write(`<!doctype html><meta charset="utf-8"><title>${esc(D.set.church)} output</title><link href="${FONTURL}" rel="stylesheet"><style>${document.querySelector("style").textContent}</style><body style="margin:0;background:#000;overflow:hidden;display:block"><div class="screen" id="os" style="width:100vw;height:100vh;aspect-ratio:auto;border-radius:0"></div>`);OW.document.close();
+  OW.document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")step(1);if(e.key==="ArrowLeft")step(-1)});paint(1);toast("Output window opened. Drag it to the projector or TV, then press F11.")}
+ else{toast("The browser blocked the pop-up, so output is fullscreen here.");A.fso()}
+}
+function loadQR(){return new Promise((res,rej)=>{if(window.qrcode)return res();const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';s.onload=res;s.onerror=()=>rej(new Error('The QR maker could not load. Connect to the internet once, then try again.'));document.head.appendChild(s)})}
+/* PowerPoint import */
+function loadZip(){return new Promise((res,rej)=>{if(window.JSZip)return res();const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";s.onload=res;s.onerror=()=>rej(new Error("The PowerPoint reader could not load. Connect to the internet once, then try again."));document.head.appendChild(s)})}
+async function impPptx(f){
+ try{toast("Reading PowerPoint…");await loadZip();const z=await JSZip.loadAsync(f),dp=new DOMParser();
+ const names=Object.keys(z.files).filter(n=>/^ppt\/slides\/slide\d+\.xml$/.test(n)).sort((a,b)=>+a.match(/\d+/)[0]-+b.match(/\d+/)[0]);
+ const xml=async n=>{const x=z.file(n);return x?dp.parseFromString(await x.async("string"),"application/xml"):null};
+ const paras=d=>d?[...d.getElementsByTagName("a:p")].map(p=>[...p.getElementsByTagName("a:t")].map(t=>t.textContent).join("")).filter(s=>s.trim()):[];
+ const base=f.name.replace(/\.pptx$/i,""),slides=[];
+ for(const n of names){const num=n.match(/\d+/)[0],ps=paras(await xml(n)).join("\n"),notes=paras(await xml("ppt/notesSlides/notesSlide"+num+".xml")).join("\n");
+  let bg="Deep";const rels=await xml("ppt/slides/_rels/slide"+num+".xml.rels");
+  if(rels){const r=[...rels.getElementsByTagName("Relationship")].find(x=>/image/.test(x.getAttribute("Type"))&&/\.(png|jpe?g|gif|webp)$/i.test(x.getAttribute("Target")));
+   if(r){const path="ppt/"+r.getAttribute("Target").replace(/^\.\.\//,""),zf=z.file(path);
+    if(zf){const ext=path.split(".").pop().toLowerCase(),blob=new Blob([await zf.async("arraybuffer")],{type:"image/"+(ext==="jpg"?"jpeg":ext)}),m={id:uid(),name:base+" slide "+num,type:"image",blob,url:URL.createObjectURL(blob),fav:false};M.push(m);mPut(m);bg="m:"+m.id}}}
+  slides.push(mk(ps,"",{bg,s:ps.length>220?.55:ps.length>120?.75:1,n:notes}))}
+ if(!slides.length)throw new Error("No slides were found in this file.");
+ D.pres.unshift({id:uid(),title:base,ts:now(),slides});save();tab="pres";renderDock();toast("Imported "+slides.length+" slides from "+f.name)
+ }catch(e){toast(e.message||"Could not read this PowerPoint file.")}
+}
+/* streaming studio */
+const ST={stream:null,rec:null,chunks:[],scene:"cam",lt:"",ltOn:0,mic:true,raf:0,an:null,ac:null,t0:0};
+const IMG={};const cvImg=u=>{if(!IMG[u]){const i=new Image();i.src=u;IMG[u]=i}return IMG[u]};
+const smsg=m=>{const e=$("#smsg");if(e)e.textContent=m};
+function openStream(){
+ modal(`<h3>Live stream studio${closeBtn}</h3><div class="split" style="grid-template-columns:minmax(0,1fr) 280px"><div><canvas id="cv" width="1280" height="720" aria-label="Stream program view"></canvas><video id="cam" muted playsinline hidden></video><div class="ctl"><button class="pri" data-a="camGo">Start camera</button><button data-a="camStop">Stop camera</button><button data-a="recGo" id="rb">Start recording</button><button data-a="recStop">Stop and save</button><button data-a="cvfs">Fullscreen view</button><button data-a="capOn">Captions on/off</button></div><div class="mut" id="smsg">Allow camera and microphone when your browser asks.</div><div id="rv"></div></div>
+ <div class="g"><label class="f">Scene<select data-f="stm" data-k="scene"><option value="cam">Camera</option><option value="slide">Slides only</option><option value="pip">Camera with slide box</option></select></label>
+ <label class="f">Camera<select id="camsel"><option value="">Default camera</option></select></label>
+ <label><input type="checkbox" data-f="stm" data-k="mic" checked> Microphone on</label><div class="meter" aria-label="Microphone level"><b id="mlv"></b></div>
+ <label class="f">Lower third text<input data-f="stm" data-k="lt" placeholder="Pastor name · title"></label><button id="ltb" data-a="ltGo">Show lower third</button>
+ <p class="mut" style="margin:0">The studio view includes your live slides, lower third and ticker. Recording saves a video file of this view. To broadcast on YouTube or Facebook, open this view fullscreen and capture it with OBS or screen share, or upload the recording afterwards.</p>
+ <a href="https://studio.youtube.com" target="_blank" rel="noopener" class="btn">Open YouTube Studio</a><a href="https://www.facebook.com/live/producer" target="_blank" rel="noopener" class="btn">Open Facebook Live</a></div></div>`,1);
+ $("#camsel").onchange=()=>{if(ST.stream)camStart()};cancelAnimationFrame(ST.raf);frame();
+}
+async function camStart(){
+ try{if(ST.stream)ST.stream.getTracks().forEach(t=>t.stop());const id=$("#camsel").value;
+  ST.stream=await navigator.mediaDevices.getUserMedia({video:id?{deviceId:{exact:id}}:true,audio:true});
+  const v=$("#cam");v.srcObject=ST.stream;await v.play();
+  const dv=(await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==="videoinput");
+  $("#camsel").innerHTML='<option value="">Default camera</option>'+dv.map(d=>`<option value="${d.deviceId}" ${ST.stream.getVideoTracks()[0].getSettings().deviceId===d.deviceId?"selected":""}>${esc(d.label||"Camera")}</option>`).join("");
+  ST.stream.getAudioTracks().forEach(a=>a.enabled=ST.mic);
+  ST.ac=ST.ac||new (window.AudioContext||window.webkitAudioContext)();ST.an=ST.ac.createAnalyser();ST.ac.createMediaStreamSource(ST.stream).connect(ST.an);
+  smsg("Camera is on.")}
+ catch(e){smsg("Could not open the camera: "+(e.message||e.name)+". If this page is embedded, open it in its own browser tab and allow camera access.")}
+}
+function wrap(x,text,maxW){const o=[];text.split("\n").forEach(par=>{let l="";par.split(" ").forEach(w=>{const t=l?l+" "+w:w;if(x.measureText(t).width>maxW&&l){o.push(l);l=w}else l=t});o.push(l)});return o}
+function cvBg(x,s,W,H,ox,oy){
+ if(!s){x.fillStyle="#000";x.fillRect(ox,oy,W,H);return}
+ if(s.bg.startsWith("m:")){const m=M.find(q=>q.id===s.bg.slice(2));if(m&&m.type==="image"){const i=cvImg(m.url);if(i.complete&&i.naturalWidth){const r=Math.max(W/i.naturalWidth,H/i.naturalHeight);x.drawImage(i,ox+(W-i.naturalWidth*r)/2,oy+(H-i.naturalHeight*r)/2,i.naturalWidth*r,i.naturalHeight*r);return}}}
+ const a=BG[s.bg]||BG.Deep,g=x.createLinearGradient(ox,oy,ox+W*.35,oy+H);a.forEach((c,i)=>g.addColorStop(a.length>1?i/(a.length-1):0,c));x.fillStyle=g;x.fillRect(ox,oy,W,H);
+}
+function cvText(x,s,W,H,ox,oy,k){
+ const sz=69*s.s*k;x.font=`500 ${sz}px ${FONTF(s)}`;x.fillStyle=s.c;x.textAlign="center";x.textBaseline="middle";x.shadowColor="rgba(0,0,0,.5)";x.shadowBlur=8;
+ const L=wrap(x,s.t,W*.85),lh=sz*1.25,tot=L.length*lh+(s.r?lh*.7:0);let y=oy+H/2-tot/2+lh/2;
+ L.forEach(l=>{x.fillText(l,ox+W/2,y);y+=lh});
+ if(s.r){x.font=`italic ${sz*.5}px ${FONTF(s)}`;x.globalAlpha=.8;x.fillText(s.r,ox+W/2,y);x.globalAlpha=1}x.shadowBlur=0;
+}
+function frame(){
+ const c=$("#cv");if(!c)return;const x=c.getContext("2d"),s=Q[qi],v=$("#cam"),camOn=ST.stream&&v&&v.readyState>1;
+ const slideFull=ST.scene==="slide"||(!camOn&&ST.scene!=="pip");
+ if(camOn&&ST.scene!=="slide")x.drawImage(v,0,0,1280,720);else if(slideFull||!camOn){cvBg(x,slideFull?s:null,1280,720,0,0);if(!camOn&&ST.scene!=="slide"){x.fillStyle="#fff8";x.font="28px sans-serif";x.textAlign="left";x.fillText("Camera is off",30,50)}}
+ if(s&&!clr){if(slideFull&&(ST.scene==="slide"||!camOn)){if(s.mt==="image"){const i=cvImg(s.mu);if(i.complete&&i.naturalWidth){const r=Math.min(1280/i.naturalWidth,720/i.naturalHeight);x.drawImage(i,(1280-i.naturalWidth*r)/2,(720-i.naturalHeight*r)/2,i.naturalWidth*r,i.naturalHeight*r)}}cvText(x,s,1280,720,0,0,1)}
+  else if(ST.scene==="pip"){const W=620,H=290,ox=640,oy=400;cvBg(x,s,W,H,ox,oy);x.globalAlpha=1;cvText(x,s,W,H,ox,oy,.5)}}
+ if(ST.ltOn&&ST.lt){x.font="600 34px 'Instrument Sans',sans-serif";const w=x.measureText(ST.lt).width+50;x.fillStyle="#fff";x.fillRect(50,D.tk.on&&D.tk.pos==="bottom"?560:610,w,58);x.fillStyle="#e5484d";x.fillRect(50,D.tk.on&&D.tk.pos==="bottom"?560:610,10,58);x.fillStyle="#12203a";x.textAlign="left";x.textBaseline="middle";x.fillText(ST.lt,78,(D.tk.on&&D.tk.pos==="bottom"?560:610)+30)}
+ const t=D.tk;if(t.on&&t.msgs.trim()){const txt=t.msgs.split("\n").filter(q=>q.trim()).join("   ✦   "),h=56*t.size,y=t.pos==="bottom"?720-h:0;x.fillStyle=t.bg;x.fillRect(0,y,1280,h);
+  x.font=`600 ${h*.5}px 'Instrument Sans',sans-serif`;x.textBaseline="middle";x.textAlign="left";const tw=x.measureText(txt).width,lw=t.label?x.measureText(t.label).width+40:0,dur=Math.max(10,txt.length*(12-t.speed)*.07),p=((performance.now()/1000)%dur)/dur;
+  x.save();x.beginPath();x.rect(lw,y,1280-lw,h);x.clip();x.fillStyle=t.c;x.fillText(txt,lw+(1280-lw)-p*(tw+1280-lw),y+h/2);x.restore();
+  if(t.label){x.fillStyle="rgba(0,0,0,.35)";x.fillRect(0,y,lw,h);x.fillStyle=t.c;x.fillText(t.label,20,y+h/2)}}
+ const c0=cd(),a0=al();if(c0.on){x.fillStyle="#0a1428";x.fillRect(0,0,1280,720);x.fillStyle="#fff";x.textAlign="center";x.textBaseline="middle";x.font="500 40px Newsreader,serif";x.fillText(c0.label,640,250);x.font="500 220px Newsreader,serif";x.fillText(cdTxt(),640,380)}
+ if(a0.on){x.fillStyle="#e5484d";x.fillRect(0,0,1280,70);x.fillStyle="#fff";x.font="700 38px 'Instrument Sans',sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText(a0.text,640,36)}
+ if(black){x.fillStyle="#000";x.fillRect(0,0,1280,720)}else if(logo){x.fillStyle="#0b1220";x.fillRect(0,0,1280,720);x.fillStyle="#fff";x.font="500 80px Newsreader,serif";x.textAlign="center";x.textBaseline="middle";x.fillText(D.set.church,640,360)}
+ if(ST.an){const d=new Uint8Array(ST.an.fftSize);ST.an.getByteTimeDomainData(d);let m=0;d.forEach(q=>m=Math.max(m,Math.abs(q-128)));const e=$("#mlv");if(e)e.style.width=Math.min(100,m/1.1)+"%"}
+ if(ST.t0){const r=$("#rb");if(r)r.textContent="Recording "+String(Math.floor((now()-ST.t0)/6e4)).padStart(2,"0")+":"+String(Math.floor((now()-ST.t0)/1e3)%60).padStart(2,"0")}
+ if(ST.cap){x.font="600 36px 'Instrument Sans',sans-serif";x.textAlign="center";x.textBaseline="middle";const w=x.measureText(ST.cap).width+40;x.fillStyle="rgba(0,0,0,.65)";x.fillRect(640-w/2,590,w,56);x.fillStyle="#fff";x.fillText(ST.cap,640,619)}
+ if(ST.tf){const a=1-(now()-ST.tf)/500;if(a>0){x.fillStyle=`rgba(0,0,0,${a})`;x.fillRect(0,0,1280,720)}else ST.tf=0}
+ ST.raf=requestAnimationFrame(frame);
+}
+function recStart(){
+ try{if(ST.rec&&ST.rec.state==="recording")return;const cs2=$("#cv").captureStream(30);if(ST.stream)ST.stream.getAudioTracks().forEach(t=>cs2.addTrack(t));
+  const mt=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"].find(t=>MediaRecorder.isTypeSupported(t));
+  ST.rec=new MediaRecorder(cs2,{mimeType:mt});ST.chunks=[];ST.rec.ondataavailable=e=>e.data.size&&ST.chunks.push(e.data);
+  ST.rec.onstop=()=>{ST.t0=0;const r=$("#rb");if(r)r.textContent="Start recording";const b=new Blob(ST.chunks,{type:"video/webm"}),u=URL.createObjectURL(b),n=D.set.church.replace(/\s+/g,"")+"-service-"+new Date().toISOString().slice(0,10)+".webm";
+   const rv=$("#rv");if(rv)rv.innerHTML=`<p class="mut">Recording ready. <a href="${u}" download="${n}">Save ${n}</a> or right-click the video and choose Save video as.</p><video src="${u}" controls style="width:100%;border-radius:6px"></video>`;smsg("Recording stopped.")};
+  ST.rec.start(1000);ST.t0=now();smsg("Recording the studio view…")}
+ catch(e){smsg("Recording is not supported in this browser: "+e.message)}
+}
+/* events */
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-a]");if(b&&A[b.dataset.a]){A[b.dataset.a](b);return}
+ const s=e.target.closest("[data-s]");if(s){PV.i=+s.dataset.s;paintPV();document.querySelectorAll("#sg .th").forEach((x,i)=>x.classList.toggle("pv",i===PV.i));return}
+ const r=e.target.closest("[data-p]");if(r&&!e.target.closest("input,button"))pick(r.dataset.p,r.dataset.id,0,false)});
+document.addEventListener("dblclick",e=>{
+ if(e.target.closest("[data-a]"))return;
+ const s=e.target.closest("[data-s]");if(s){PV.i=+s.dataset.s;send(PV.sl,PV.i,PV.t);return}
+ const r=e.target.closest("[data-p]");if(r)pick(r.dataset.p,r.dataset.id,0,true)});
+document.addEventListener("input",e=>{const t=e.target,f=t.dataset.f;if(f&&H[f])H[f](t)});
+document.addEventListener("change",async e=>{const t=e.target,k=t.dataset.fc;if(!k||!t.files.length)return;const fs=[...t.files];t.value="";
+ if(k==="impM"){for(const f of fs){const ty=f.type.split("/")[0];if(!["image","video","audio"].includes(ty))continue;const m={id:uid(),name:f.name,type:ty,blob:f,url:URL.createObjectURL(f),fav:false};M.push(m);await mPut(m)}tab="media";renderDock();toast(fs.length+" file(s) added. Double-click an image to show it live.");return}
+ const f=fs[0];
+ if(k==="impP"&&/\.pptx$/i.test(f.name))return impPptx(f);
+ if(k==="impP"&&/\.ppt$/i.test(f.name))return toast("Old .ppt files are not supported. In PowerPoint choose Save As, then .pptx.");
+ const r=new FileReader();r.onload=()=>{const T=r.result,nm=f.name.replace(/\.\w+$/,"");
+  if(k==="impP"){D.pres.unshift({id:uid(),title:nm,ts:now(),slides:T.split(/\n\s*\n/).filter(b=>b.trim()).map(b=>mk(b.trim()))});toast("Imported "+nm)}
+  if(k==="impS"){D.songs.unshift({id:uid(),title:nm,author:"",cat:"Worship",fav:0,bg:"Deep",ts:now(),lyrics:T.trim()});toast("Imported "+nm)}
+  if(k==="impB"){const have=new Set(BIB.map(x=>x[0])),n=[];T.split("\n").forEach(l=>{const i=l.search(/[|\t]/);if(i<1)return;const a=l.slice(0,i).trim(),b=l.slice(i+1).trim();if(a&&b&&!have.has(a)){have.add(a);n.push([a,b])}});n.forEach(a=>BIB.push(a));EV=EV.concat(n);bPut();toast(n.length+" verses imported")}
+  save();renderDock()};r.readAsText(f)});
+document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement)$("#out").style.display="none"});
+$("#out").onclick=()=>step(1);
+document.addEventListener("keydown",e=>{
+ const k=e.key.toLowerCase();
+ if("123".includes(k)&&k.length===1&&$("#cv")&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){ST.scene=["cam","slide","pip"][+k-1];ST.tf=now();const sel=document.querySelector('[data-k="scene"]');if(sel)sel.value=ST.scene;return}
+ if(k==="escape"){if($("#modal").className)cleanup();else{$("#out").style.display="none";if(document.fullscreenElement)document.exitFullscreen()}return}
+ if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||$("#modal").className)return;
+ if(k==="arrowright")step(1);else if(k==="arrowleft")step(-1);
+ else if(k==="enter"&&e.target.tagName!=="BUTTON")A.take();
+ else if(k==="b")A.blk();else if(k==="l")A.logo();else if(k==="c")A.clr();else if(k==="f")A.fso()});
+setInterval(()=>{const c=cd(),a=al();if(c.on&&c.end-now()<=-3000){c.on=0;save();paint(0)}if(a.on&&a.until&&now()>a.until){a.on=0;save();paint(0)}if(c.on){const t=cdTxt();document.querySelectorAll(".cdv").forEach(e=>e.textContent=t);if(OW&&!OW.closed)OW.document.querySelectorAll(".cdv").forEach(e=>e.textContent=t)}},500);
+setInterval(()=>{if(t0){const s=Math.floor((now()-t0)/1e3);$("#tm").textContent="On screen for "+Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}},1000);
+if(D.extraV)D.extraV.forEach(a=>BIB.push(a));
+document.documentElement.dataset.theme=D.set.theme;$("#cn").textContent=D.set.church;
+renderAll();mLoad();bLoad();
+</script></body></html>
